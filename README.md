@@ -31,3 +31,5 @@
     主线程 向 子线程发送消息  @HandlerActivity2
     
     子线程 向 主线程发送消息  @HandlerActivity
+
+    ![Handle机制时序](https://github.com/zbiext/Practice02/blob/master//images/handler处理机制.png)
