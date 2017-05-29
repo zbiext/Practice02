@@ -1,0 +1,139 @@
+package com.huawei.zbie.permissionwrapperdemo;
+
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.huawei.zbie.permissionwrapperdemo.util.Func;
+import com.huawei.zbie.permissionwrapperdemo.util.Func2;
+import com.huawei.zbie.permissionwrapperdemo.util.PermissionUtil;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public static final  String WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+    public static final  String WRITE_CONTACTS         = Manifest.permission.WRITE_CONTACTS;
+    private static final int    REQUEST_CODE_CONTACTS  = 1;
+    private static final int    REQUEST_CODE_STORAGE   = 2;
+    private static final int    REQUEST_CODE_BOTH      = 3;
+
+    private PermissionUtil.PermissionRequestObject mStoragePermissionRequest;
+    private PermissionUtil.PermissionRequestObject mContactsPermissionRequest;
+    private PermissionUtil.PermissionRequestObject mBothPermissionRequest;
+
+    private TextView mTvStatus;
+    private Button   mBtnStorage;
+    private Button   mbtnStorageCheck;
+    private Button   mBtnContacts;
+    private Button   mBtnContactsCheck;
+    private Button   mBtnBoth;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initView();
+        initListener();
+    }
+
+    private void initView() {
+        mTvStatus = (TextView) findViewById(R.id.status);
+        mBtnStorage = (Button) findViewById(R.id.storage);
+        mbtnStorageCheck = (Button) findViewById(R.id.storage_check);
+        mBtnContacts = (Button) findViewById(R.id.contacts);
+        mBtnContactsCheck = (Button) findViewById(R.id.contacts_check);
+        mBtnBoth = (Button) findViewById(R.id.both);
+    }
+
+    private void initListener() {
+        mBtnStorage.setOnClickListener(this);
+        mbtnStorageCheck.setOnClickListener(this);
+        mBtnContacts.setOnClickListener(this);
+        mBtnContactsCheck.setOnClickListener(this);
+        mBtnBoth.setOnClickListener(this);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (mStoragePermissionRequest != null) {
+            mStoragePermissionRequest.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        if (mContactsPermissionRequest != null) {
+            mContactsPermissionRequest.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        if (mBothPermissionRequest != null) {
+            mBothPermissionRequest.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.storage: //请求储存权限
+                mStoragePermissionRequest = PermissionUtil.with(this).request(WRITE_EXTERNAL_STORAGE).onAllGranted(new Func() {
+                    @Override
+                    protected void call() {
+                        doOnPermissionGranted("Storage");
+                    }
+                }).onAnyDenied(new Func() {
+                    @Override
+                    protected void call() {
+                        doOnPermissionDenied("Storage");
+                    }
+                }).ask(REQUEST_CODE_STORAGE);
+                break;
+            case R.id.storage_check: //检查储存权限
+                updateStatus(PermissionUtil.with(this).has(WRITE_EXTERNAL_STORAGE) ? "Has Storage permission" : "Doesn't have Storage permission");
+                break;
+            case R.id.contacts: //请求通讯录权限
+                mContactsPermissionRequest = PermissionUtil.with(this).request(WRITE_CONTACTS).onAllGranted(new Func() {
+                    @Override
+                    protected void call() {
+                        doOnPermissionGranted("Contacts");
+                    }
+                }).onAnyDenied(new Func() {
+                    @Override
+                    protected void call() {
+                        doOnPermissionDenied("Contacts");
+                    }
+                }).ask(REQUEST_CODE_CONTACTS);
+                break;
+            case R.id.contacts_check: //检查储存权限
+                updateStatus(PermissionUtil.with(this).has(WRITE_CONTACTS) ? "Has Contacts permission" : "Doesn't have Contacts permission");
+                break;
+            case R.id.both:
+                mBothPermissionRequest = PermissionUtil.with(this).request(WRITE_EXTERNAL_STORAGE, WRITE_CONTACTS).onResult(new Func2() {
+                    @Override
+                    protected void call(int requestCode, String[] permissions, int[] grantResults) {
+                        for (int i = 0; i < permissions.length; i++) {
+                            if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                                doOnPermissionGranted(permissions[i]);
+                            } else {
+                                doOnPermissionDenied(permissions[i]);
+                            }
+                        }
+                    }
+                }).ask(REQUEST_CODE_BOTH);
+                break;
+        }
+    }
+
+    private void doOnPermissionDenied(String permission) {
+        updateStatus(permission + " Permission Denied or is on \"Do Not SHow Again\"");
+    }
+
+    private void doOnPermissionGranted(String permission) {
+        updateStatus(permission + " Permission Granted");
+    }
+
+    private void updateStatus(String s) {
+        mTvStatus.setText(String.format("> %s\n", s) + mTvStatus.getText().toString());
+    }
+}
