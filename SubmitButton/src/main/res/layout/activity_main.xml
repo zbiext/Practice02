@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <com.zbie.submitbutton.view.SubmitButton
+            android:id="@+id/sbtn_loading"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            app:buttonText="Submit"
+            app:buttonTextSize="25sp"/>
+
+        <com.zbie.submitbutton.view.SubmitButton
+            android:id="@+id/sbtn_progress"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="30dp"
+            android:visibility="gone"
+            app:buttonText="Submit"
+            app:buttonTextSize="25sp"
+            app:progressStyle="progress"/>
+
+        <Button
+            android:id="@+id/btn_succeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+            android:text="succeed"/>
+
+        <Button
+            android:id="@+id/btn_failed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:text="failed"/>
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:text="reset"/>
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Progress Style Switch "/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl">
+
+        <TextView
+            android:id="@+id/tv_color_backgroound"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/servicefuzz"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"/>
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/encrypt_decode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="encrypt/decode"/>
+
+        <!--<Button-->
+        <!--android:id="@+id/decode"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:paddingTop="20dp"-->
+        <!--android:text="Hello World!"-->
+        <!--tools:ignore="RtlHardcoded"/>-->
+    </RelativeLayout>
+</RelativeLayout>
