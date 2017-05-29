@@ -16,7 +16,7 @@
     
 4. Other(自定义view)
 
-TODO 原链接正在整理
+    TODO 原链接正在整理...
 
     MainActivity        ————  星星 闪亮的两种方式
     
