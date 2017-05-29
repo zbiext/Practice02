@@ -25,3 +25,9 @@
     RingRotateAcitivty  ————  小球在圆圈内滚动
     
     TempContrlActivity  ————  温度旋钮自定义控件(类似音量调节)
+
+5. HandlerTest(结合handler机制,网上资料一搜一大把  - -!)
+
+    主线程 向 子线程发送消息  @HandlerActivity2
+    
+    子线程 向 主线程发送消息  @HandlerActivity
