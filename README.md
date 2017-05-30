@@ -45,3 +45,11 @@
     [PhotoView开源项目剖析](http://blog.csdn.net/wu928320442/article/details/43056731)
     
     [github地址](https://github.com/chrisbanes/PhotoView)
+
+8. MagicIndicatorDemo
+
+    [MagicIndicator系列](http://www.jianshu.com/u/f0a3fb1abaed)
+    
+    [原博地址](http://www.jianshu.com/p/2865812fed41)
+    
+    [Android主流UI开源库整理](http://www.jianshu.com/p/47a4a7b99364)
