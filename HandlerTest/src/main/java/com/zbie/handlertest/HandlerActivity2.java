@@ -41,8 +41,8 @@ public class HandlerActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity2_handler);
 
-        Log.d(TAG + "hand", "onCreate: currentThread " + Thread.currentThread());
-        Log.d(TAG + "hand", "onCreate: currentThread().getId() " + Thread.currentThread().getId());
+        Log.d(TAG, "onCreate: currentThread " + Thread.currentThread());
+        Log.d(TAG, "onCreate: currentThread().getId() " + Thread.currentThread().getId());
 
         HandlerThread handlerThread = new HandlerThread("handler_thread");
         handlerThread.start();
@@ -134,8 +134,8 @@ public class HandlerActivity2 extends AppCompatActivity {
             int    age    = bundle.getInt("age");
             String name   = bundle.getString("name");
             Log.d(TAG, "handleMessage: age is " + age + ",name is " + name);
-            Log.d(TAG + "hand", "onCreate: " + Thread.currentThread());
-            Log.d(TAG + "hand", "onCreate: " + Thread.currentThread().getId());
+            Log.d(TAG, "handleMessage: " + Thread.currentThread());
+            Log.d(TAG, "handleMessage: " + Thread.currentThread().getId());
         }
     }
 }
