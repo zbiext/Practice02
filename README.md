@@ -53,3 +53,11 @@
     [原博地址](http://www.jianshu.com/p/2865812fed41)
     
     [Android主流UI开源库整理](http://www.jianshu.com/p/47a4a7b99364)
+
+9. WaveSideBarDemo
+
+    [不一定对的原博地址](http://www.jcodecraeer.com/a/opensource/2016/0719/4508.html)
+    
+    [github地址](https://github.com/Solartisan/WaveSideBar)
+    
+    [类似功能的](http://blog.csdn.net/u014608640/article/details/52571859)
