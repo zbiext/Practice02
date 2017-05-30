@@ -39,3 +39,9 @@
     [给我一个Path，还你一个酷炫动画](http://www.jianshu.com/p/2f181e703862)
     
     [极速get花式Path （支付宝支付成功动画）](http://www.jianshu.com/p/99f956ef0b9f)
+
+7. PhotoViewDemo
+
+    [PhotoView开源项目剖析](http://blog.csdn.net/wu928320442/article/details/43056731)
+    
+    [github地址](https://github.com/chrisbanes/PhotoView)
